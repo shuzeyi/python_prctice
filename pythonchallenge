@@ -1,0 +1,194 @@
+#文件常规操作测试
+# f = open('d:/data/file.txt', 'a')
+# try:
+#     f.write('222\n')
+# except:
+#     pass
+# finally:
+#     f.close()
+
+#文件with语句测试
+# with open('d:/data/file.txt', 'a') as file:
+#     data = file.write('hahaha\n')
+
+
+#正则测试
+# import re
+# strings = '<div class="name">中国</div>'
+# res = re.findall(r'<div class=".*">(.*?)</div>',strings)
+# print(res)
+
+#断言测试
+# import unittest
+#
+#
+# class auto_test(unittest.TestCase):
+#     def test1(self):
+#         ta = ('a','b','c')
+#         tb = ('a','b','c')
+#
+#         self.assertEqual(ta,tb)
+#
+# if __name__ == '__main__':
+#    unittest.main()
+
+# print(2**38)
+# a_tuple =('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z')
+#
+# def map_fun(charactor,mode):
+#     new_charactor_index = 0
+#     if mode == 'encode':
+#         if charactor != 'y' and charactor != 'z':
+#             new_charactor_index = a_tuple.index(charactor) + 2
+#         elif charactor == 'y':
+#             new_charactor_index = 0
+#         elif charactor == 'z':
+#             new_charactor_index = 1
+#         return a_tuple[new_charactor_index]
+#     elif mode == 'decode':
+#         if charactor != 'a' and charactor != 'b':
+#             new_charactor_index = a_tuple.index(charactor) - 2
+#         elif charactor == 'a':
+#             new_charactor_index = 24
+#         elif charactor == 'b':
+#             new_charactor_index = 25
+#         return a_tuple[new_charactor_index]
+#
+# def cf_fun(strings,mode):
+#     new_strings = ''
+#     for i in strings:
+#         if i in a_tuple:
+#             j = str(map_fun(i,mode))
+#         else:
+#             j = str(i)
+#         new_strings += j
+#     return new_strings
+#
+# print(cf_fun('map','encode'))
+
+# char_count = {}
+# for line in open("d:/data/data.txt"):
+#     for c in line:
+#         char_count.setdefault(c, 0)
+#         char_count[c] += 1
+#
+# sorted_chars = sorted(char_count.items(), key=lambda x: x[1])
+# print(sorted_chars)
+# #
+# chars = ['a', 'e', 'i', 'l', 'q', 'u', 't', 'y']
+# all_str = "".join(open("d:/data/data.txt"))
+# chars_ind = [(c, all_str.find(c)) for c in chars]
+# print(''.join([c[0] for c in sorted(chars_ind, key=lambda x: x[1])]))
+
+# import re
+# all_str = "".join(open("d:/data/re.txt"))
+# chars = re.findall(r'[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]', all_str)
+# print("".join(chars))
+
+# import re
+# chars_all = []
+# all_str = "".join(open("d:/data/re.txt"))
+# for i in open("d:/data/re.txt"):
+#     chars = re.findall(r'[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]', i)
+#     if len(chars) > 0:
+#         chars_all += chars
+#
+# print("".join(chars_all))
+
+# import re
+# import urllib.request
+
+# next = "8022"
+# url = ""
+# response = ""
+# while next:
+#     url = "http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing="+next
+#     res = urllib.request.urlopen(url)
+#     response = res.read().decode('utf-8')
+#
+#     # handle the solution (last) line
+#     if re.findall(r'\.html$', response):
+#         break
+#
+#     code = re.findall(r'\d+$', response)
+#
+#     if(code):
+#         next = code[0]
+#     else:
+#         # handle the divide by two line
+#         next = str (int (next) / 2 )
+#
+#     print(url)
+#     print(response)
+
+# import re
+# import urllib.request
+# url = "http://www.baidu.com"
+# res = urllib.request.urlopen(url)
+# response = res.read().decode('utf-8')
+# print(response)
+
+# class StrToBytes:
+#     def __init__(self, file):
+#         self.file = file
+#
+#     def read(self, size):
+#         return self.file.read(size).encode()
+#
+#     def readline(self, size=-1):
+#         return self.file.readline(size).encode()
+#
+# import pickle
+# with open("d:/data/banner.p", 'r') as data_file:
+#     banner = pickle.load(StrToBytes(data_file))
+# for line in banner:
+#     print("".join(ch * count for ch, count in line))
+
+# import zipfile, re
+# find_nothing = re.compile(r"Next nothing is (\d+)").match
+# comments = []
+# z = zipfile.ZipFile("d:/data/channel.zip", "r")
+# seed = "90052"
+# while True:
+#     f_name = seed + ".txt"
+#     comments.append(z.getinfo(f_name).comment)
+#     print(f_name)
+#     guts = z.read(f_name).decode()
+#     m = find_nothing(guts)
+#     if m:
+#         seed = m.group(1)
+#     else:
+#         break
+# print("".join(comments))
+
+# import zipfile
+# import re
+# zf = zipfile.ZipFile('d:/data/channel.zip', 'r')
+# find_nothing = re.compile(r"Next nothing is (\d+)").match
+# seed = "90052"
+# comments = []
+# while True:
+#     f_name = seed + ".txt"
+#     com_mid = zf.getinfo(f_name).comment.decode()
+#     comments.append(com_mid)
+#     guts = zf.read(f_name).decode()
+#     m = find_nothing(guts)
+#     if m:
+#         seed = m.group(1)
+#         z_info = zf.getinfo(f_name)
+#     else:
+#         break
+#
+# print("".join(comments))
+
+# my_bytes = b'i am  bytes'
+# print(type(my_bytes))
+#
+# my_strings = r'i am  strings'
+# print(type(my_strings))
+#
+# bytes_to_string = my_bytes.decode()
+# print(type(bytes_to_string))
+#
+# strings_to_bytes = my_strings.encode()
+# print(type(strings_to_bytes))
