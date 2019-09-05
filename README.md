@@ -1,2 +1,2 @@
-# python_prctice
+# python_practice
 pythonchallenge练习1到6，基于Python3实现
